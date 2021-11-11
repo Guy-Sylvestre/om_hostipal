@@ -45,6 +45,7 @@
                 <field name="age" />
                 <field name="gender" />
                 <field name="note" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -55,6 +56,10 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form>
+                <!-- Statusbar and state -->
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}" statusbar_visible="draft,done,confirm"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
@@ -77,7 +82,7 @@
         </field>
     </record>
 
-    <!-- search view e -->
+    <!-- search view  -->
     <record id="view_patient_search" model="ir.ui.view">
         <field name="name">hospital.patient.search</field>
         <field name="model">hospital.patient</field>

@@ -8,11 +8,10 @@ class HospitalPatient(models.Model):
 
     name = fields.Char(string='Name', required=True)
     age = fields.Integer(string='Age')
-    
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other'),
     ], required=True, default='male')
-
     note = fields.Text(string='Description')
+    state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirmed'), ('done', 'Done'), ('cancel', 'Cancelled')], default='draft', string="status")
