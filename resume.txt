@@ -1,0 +1,2 @@
+_inherit = ["mail.thread"]
+To add chatter form view in odoo || send message, note and schedule activity buttons

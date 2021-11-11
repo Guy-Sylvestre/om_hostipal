@@ -8,7 +8,11 @@
     'category': 'Productivity',
     'version': '1.0',
     'licence': 'LGPL-3',
-    'depends': ['sale'],
+    'depends': ['sale',
+                'website_slides',
+                'mail',
+                'hr'    
+            ],
     'data': [
         'security/ir.model.access.csv',
         'views/patient.xml',
