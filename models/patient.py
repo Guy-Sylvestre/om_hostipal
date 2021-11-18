@@ -6,15 +6,20 @@ class HospitalPatient(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Hospital Patient"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
-    name = fields.Char(string='Name', required=True)
-    age = fields.Integer(string='Age')
+    name = fields.Char(string='Name', required=True, tracking=True)
+    age = fields.Integer(string='Age', tracking=True)
+    
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other'),
-    ], required=True, default='male')
+    ], required=True, default='male', tracking=True)
     note = fields.Text(string='Description')
-    state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirmed'), ('done', 'Done'), ('cancel', 'Cancelled')], default='draft', string="status")
+    
+    state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirmed'),
+                              ('done', 'Done'), ('cancel', 'Cancelled')],
+                             default='draft', string="status", tracking=True)
+    # responsible_id = fields.Many2one('res.parthner', string="Responsible")
 
     def action_confirm(self):
         self.state = 'confirm'
