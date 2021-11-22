@@ -19,7 +19,9 @@ class HospitalPatient(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirmed'),
                               ('done', 'Done'), ('cancel', 'Cancelled')],
                              default='draft', string="status", tracking=True)
-    # responsible_id = fields.Many2one('res.parthner', string="Responsible")
+    
+    responsible_id = fields.Many2one('res.partner', string="Responsible")
+    
 
     def action_confirm(self):
         self.state = 'confirm'
@@ -32,3 +34,10 @@ class HospitalPatient(models.Model):
         
     def action_cancel(self):
         self.state = 'cancel'
+        
+    @api.model
+    def create(self, vals):
+        res = super(HospitalPatient, self).create(vals)
+        print("Res ------------>", res)
+        print("vals ---------->", vals)
+        return res
