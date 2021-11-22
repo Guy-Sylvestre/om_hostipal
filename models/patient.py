@@ -1,5 +1,10 @@
 #-*- coding: utf-8 -*-
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+
+import logging
+_logger = logging.getLogger(__name__)
+
+
 
 class HospitalPatient(models.Model):
     _name = "hospital.patient"
@@ -37,7 +42,8 @@ class HospitalPatient(models.Model):
         
     @api.model
     def create(self, vals):
+        if not vals.get('note'):
+            vals['note'] = 'New Patient'
         res = super(HospitalPatient, self).create(vals)
-        print("Res ------------>", res)
-        print("vals ---------->", vals)
+        _logger.info("\m---------------------> REST ---------------------\m{}\m".format(res))
         return res
